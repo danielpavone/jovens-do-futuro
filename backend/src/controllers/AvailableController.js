@@ -9,7 +9,8 @@ module.exports = {
       date: {
         $gte: new Date()
       }
-    })
+    }).populate('school').populate('workshop');
+
     return res.json(schedule);
   }
 };

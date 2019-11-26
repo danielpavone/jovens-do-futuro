@@ -1,7 +1,6 @@
 import React from 'react';
 
 function FeaturedCourses() {
-
     return (
         <section className="special_cource">
             <div className="container">
@@ -17,12 +16,12 @@ function FeaturedCourses() {
                     <div className="col-sm-6 col-lg-4">
                         <div className="single_special_cource">
                             <div className="special_cource_text">
-                                <a href="course-details.html" className="btn_4">Web Development</a>
-                                <h4>$130.00</h4>
-                                <a href="course-details.html"><h3>Web Development</h3></a>
-                                <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
+                                <a className="btn_4">Web</a>
+                                <h4>R$130,00</h4>
+                                <a href="course-details.html"><h3>ReactJS</h3></a>
+                                <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
                                 <div className="author_info">
-                                    <a class="btn_1" href="#">Comprar</a>
+                                    <a className="btn_1" href="#">COMPRAR</a>
                                 </div>
                             </div>
                         </div>

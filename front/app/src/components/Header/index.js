@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 function Header() {
     return (
@@ -18,16 +20,16 @@ function Header() {
                                 id="navbarSupportedContent">
                                 <ul className="navbar-nav align-items-center">
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/">Home</a>
+                                        <Link className="nav-link" to="/">Home</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/about">Quem Somos</a>
+                                        <Link className="nav-link" to="/about">Quem somos</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/courses">Cursos</a>
+                                        <Link className="nav-link" to="/courses">Cursos</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/contact">Contato</a>
+                                        <Link className="nav-link" to="/contact">Contato</Link>
                                     </li>
                                 </ul>
                             </div>

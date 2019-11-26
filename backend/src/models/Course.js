@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const CourseSchema = new mongoose.Schema({
   name: String,
   description: String,
-  price: String,
+  price: Number,
   quantity: Number,
   type: String,
   company: {

@@ -3,6 +3,7 @@ const express = require('express');
 const CompanyController = require('./controllers/CompanyController');
 const CourseController = require('./controllers/CourseController');
 const WorkshopController = require('./controllers/WorkshopController');
+const OrderController = require('./controllers/OrderController');
 
 const routes = express.Router();
 
@@ -20,4 +21,6 @@ routes.post('/workshop', WorkshopController.store);
 routes.get('/workshop', WorkshopController.index);
 routes.get('/workshop/:id', WorkshopController.show);
 
+// Order routes
+routes.post('/order', OrderController.store);
 module.exports = routes;

@@ -4,6 +4,7 @@ const CompanyController = require('./controllers/CompanyController');
 const CourseController = require('./controllers/CourseController');
 const WorkshopController = require('./controllers/WorkshopController');
 const OrderController = require('./controllers/OrderController');
+const SchoolController = require('./controllers/SchoolController');
 
 const routes = express.Router();
 
@@ -23,4 +24,10 @@ routes.get('/workshop/:id', WorkshopController.show);
 
 // Order routes
 routes.post('/order', OrderController.store);
+
+// School routes
+routes.post('/school', SchoolController.store);
+routes.get('/school', SchoolController.index);
+routes.get('/school/:id', SchoolController.show);
+
 module.exports = routes;

@@ -1,13 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import InfoData from '../../components/InfoData';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
+import api from '../../services/api';
+
 function OrderPage(props) {
+    const [workshops, setWorshops] = useState([]);
 
-    console.log(props)
+    useEffect(() => {
+        const loadWorkshops = async () => {
+          const response = await api.get('workshops');
+          setWorshops(response.data);
+        };
+    
+        loadWorkshops();
+    }, []);
 
+    console.log(workshops);
     return (
         <>
             <Header />
@@ -59,30 +70,14 @@ function OrderPage(props) {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {workshops.map(workshop => (
                                         <tr>
-                                            <td>Escola municipal</td>
-                                            <td>Logica de prg</td>
-                                            <td>20/12/2019 20:30</td>
+                                            <td>{workshop.school.name}</td>
+                                            <td>{workshop.name}</td>
+                                            <td>{workshop.date}</td>
                                             <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
                                         </tr>
-                                        <tr>
-                                            <td>Escola municipal</td>
-                                            <td>Logica de prg</td>
-                                            <td>20/12/2019 20:30</td>
-                                            <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Escola municipal</td>
-                                            <td>Logica de prg</td>
-                                            <td>20/12/2019 20:30</td>
-                                            <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Escola municipal</td>
-                                            <td>Logica de prg</td>
-                                            <td>20/12/2019 20:30</td>
-                                            <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                        </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>

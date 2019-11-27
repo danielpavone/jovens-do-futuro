@@ -1,6 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+
+import api from '../../services/api';
 
 function FeaturedCourses() {
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        const loadCourses = async () => {
+          const response = await api.get('courses');
+          console.log(response);
+          setCourses(response.data);
+        };
+    
+        loadCourses();
+    }, []);
+    
+
     return (
         <section className="special_cource">
             <div className="container">

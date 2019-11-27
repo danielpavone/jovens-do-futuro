@@ -59,6 +59,18 @@ input:hover, input:focus {
   color: #fff;
 }
 
+.course_padding_top {
+  padding-top: 250px !important;
+  background-image: url(../img/banner_bg.png);
+    background-repeat: no-repeat;
+    background-size: 69% 318px;
+    background-position: top right;
+}
+
+.single_special_cource {
+  margin-bottom: 30px;
+} 
+
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   /* line 18, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
@@ -2657,8 +2669,8 @@ ul {
 
 /* line 106, E:/172 Etrain Education/172_Etrain_Education_html/sass/_banner.scss */
 .banner_part .banner_text p {
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: 25px;
+  line-height: 1.5;
   font-family: "Roboto", sans-serif;
   color: #777777;
 }
@@ -3238,9 +3250,10 @@ ul {
 /************Team css start***************/
 /* line 2, E:/172 Etrain Education/172_Etrain_Education_html/sass/_learning.scss */
 .learning_part {
-  position: relative;
   z-index: 99;
-  padding: 189px 0px 210px;
+  padding: 60px 0px 60px;
+  background-color: #12f0ed;
+  margin-bottom: 140px;
 }
 
 @media (max-width: 576px) {
@@ -3279,9 +3292,10 @@ ul {
   background-size: cover;
   background-size: 70% 100%;
   background-position: left top;
-  position: absolute;
+  position: relative;
   left: -134px;
-  bottom: -69px;
+  bottom: -7px;
+  height: 400px;
 }
 
 @media (max-width: 576px) {
@@ -3324,7 +3338,7 @@ ul {
 
 /* line 47, E:/172 Etrain Education/172_Etrain_Education_html/sass/_learning.scss */
 .learning_part .learning_img img {
-  padding: 0px 53px 64px 50px;
+  max-width: 560px;
 }
 
 @media (max-width: 576px) {
@@ -3449,8 +3463,10 @@ ul {
 
 /* line 137, E:/172 Etrain Education/172_Etrain_Education_html/sass/_learning.scss */
 .learning_part .learning_member_text p {
-  line-height: 1.929;
-  margin-bottom: 7px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #000;
+  font-size: 16px;
 }
 
 @media (max-width: 576px) {

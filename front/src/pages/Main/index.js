@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import FeaturedCourses from '../../components/FeaturedCourses';
 import InfoData from '../../components/InfoData';
@@ -6,7 +7,8 @@ import AboutUs from '../../components/AboutUs';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-function MainPage() {
+function MainPage(props) {
+
     return (
         <>
             <Header />
@@ -19,7 +21,7 @@ function MainPage() {
                                 <div className="banner_text_iner">
                                     <h1>Seu conhecimento ajudando o próximo</h1>
                                     <p>Traga sua empresa para o próximo nível e ganhe descontos compartilhando seu conhecimento.</p>
-                                    <a href="#" className="btn_1">CONHEÇA NOSSOS CURSOS</a>
+                                    <Link to="/courses" className="btn_1">CONHEÇA NOSSOS CURSOS</Link>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +30,7 @@ function MainPage() {
             </section>
 
             <AboutUs />
-            <FeaturedCourses />
+            <FeaturedCourses history={props.history} />
             <InfoData />
             <Footer />
         </>

@@ -1,10 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import InfoData from '../../components/InfoData';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
+import api from '../../services/api';
+
 function CoursesPage() {
+    const [courses, setCourses] = useState([]);
+    useEffect(() => {
+        const loadCourses = async () => {
+          const response = await api.get('courses');
+          setCourses(response.data);
+        };
+    
+        loadCourses();
+    }, []);
     return (
         <>
             <Header />
@@ -20,152 +31,21 @@ function CoursesPage() {
                         </div>
                     </div>
                     <div className="row">
+                        {courses.map(course => (
                         <div className="col-sm-6 col-lg-4">
                             <div className="single_special_cource">
                                 <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
+                                    <a className="btn_4">{course.type}</a>
+                                    <h4>R${course.price}</h4>
+                                    <a href="course-details.html"><h3>{course.name}</h3></a>
+                                    <p>{course.description}</p>
                                     <div className="author_info">
                                         <a className="btn_1" href="#">COMPRAR</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_special_cource">
-                                <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_special_cource">
-                                <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_special_cource">
-                                <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_special_cource">
-                                <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_special_cource">
-                                <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_special_cource">
-                                <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_special_cource">
-                                <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_special_cource">
-                                <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_special_cource">
-                                <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>

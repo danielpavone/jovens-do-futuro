@@ -253,6 +253,62 @@ a:focus, .button:focus, button:focus, .btn:focus {
   transition: 1s;
 }
 
+.fluxo {
+  color: #000;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 0px 20px 40px 20px;
+}
+
+.box_checkout {
+  border-top: 1px solid #f1f1f1;
+  padding: 20px 0px 0px  0px;
+  color: #000;
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+.box_checkout span {
+  color: #4454d7;
+  font-weight: bold;
+}
+
+.table_conf {
+  margin-top: 40px;
+}
+
+.no_shadow {
+  box-shadow: none !important;
+}
+
+.confirmacao_check {
+  text-align: center;
+}
+
+.confirmacao_check h1 {
+  font-size: 40px;
+  color: #4454d7;
+}
+
+.confirmacao_check h1 span {
+  display: block;
+  font-size: 22px;
+  color: #12f0ed;
+}
+
+.confirmacao_check h2 {
+  font-size: 22px;
+  color: #999;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-weight: normal;
+}
+
+.confirmacao_check img {
+  max-width: 500px;
+}
+
+
 /* line 126, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
 .section_tittle {
   margin-bottom: 110px;
@@ -661,7 +717,7 @@ ul {
 
 /* line 106, E:/172 Etrain Education/172_Etrain_Education_html/sass/_button.scss */
 .btn_4:hover {
-  background: rgba(255, 102, 59, 0.8);
+  background: #4454d7;
   color: #fff;
 }
 

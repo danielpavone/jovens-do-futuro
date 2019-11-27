@@ -6,7 +6,8 @@ import Footer from '../../components/Footer';
 
 import api from '../../services/api';
 
-function CoursesPage() {
+function CoursesPage({ history }) {
+
     const [courses, setCourses] = useState([]);
     useEffect(() => {
         const loadCourses = async () => {
@@ -41,7 +42,7 @@ function CoursesPage() {
                                     <p>{course.description}</p>
                                     <p><b>{course.company.name}</b></p>
                                     <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
+                                        <a className="btn_1" href="" onClick={() => history.push('/order', {...course})}>COMPRAR</a>
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import InfoData from '../../components/InfoData';
 import Header from '../../components/Header';
@@ -6,7 +6,12 @@ import Footer from '../../components/Footer';
 
 function OrderPage(props) {
 
-    console.log(props)
+    console.log(props.location.state)
+    const [ order, setOrder ] = useState({
+        ...props.location.state,
+        quantidade: 1,
+        step: 1
+    })
 
     return (
         <>
@@ -24,98 +29,44 @@ function OrderPage(props) {
                     </div>
                     <div className="row">
 
-                        <h4 className="fluxo">1. Selecione a quantidade</h4>
 
-                        <div className="col-sm-12 col-lg-12">
-                            <div className="single_special_cource">
-                                <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    
-                                    <div className="author_info">
-                                        <div class="form-group">
-                                            <input class="form-control" name="subject" type="text" placeholder="Quantidade" />
+                        {order.step === 1 &&
+                        <>
+                            <h4 className="fluxo">1. Selecione a quantidade</h4>
+
+                            <div className="col-sm-12 col-lg-12">
+                                <div className="single_special_cource">
+                                    <div className="special_cource_text">
+                                        <a className="btn_4">{order.type}</a>
+                                        <h4>R${order.price * order.quantidade}</h4>
+                                        <a href="course-details.html"><h3>{order.name}</h3></a>
+                                        <p>{order.description}</p>
+                                        
+                                        <div className="author_info">
+                                            <div className="form-group">
+                                                <input value={order.quantidade} onChange={(e) => setOrder({...order, quantidade: e.target.value})} className="form-control" name="subject" type="number" placeholder="Quantidade" />
+                                            </div>
+                                            <a className="btn_1" href="#">CONTINUAR</a>
                                         </div>
-                                        <a className="btn_1" href="#">CONTINUAR</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </>
+                        }
 
+                        {order.step === 2 &&
+                        <>
+                            <h4 className="fluxo">2. Selecione a escola/workshop a ministrar</h4>
 
-                        <h4 className="fluxo">2. Selecione a escola/workshop a ministrar</h4>
-
-                        <div className="col-sm-12 col-lg-12 single_special_cource">
-                            <div className="special_cource_text">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Escola</th>
-                                            <th>Workshop</th>
-                                            <th>Data</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Escola municipal</td>
-                                            <td>Logica de prg</td>
-                                            <td>20/12/2019 20:30</td>
-                                            <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Escola municipal</td>
-                                            <td>Logica de prg</td>
-                                            <td>20/12/2019 20:30</td>
-                                            <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Escola municipal</td>
-                                            <td>Logica de prg</td>
-                                            <td>20/12/2019 20:30</td>
-                                            <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Escola municipal</td>
-                                            <td>Logica de prg</td>
-                                            <td>20/12/2019 20:30</td>
-                                            <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <h4 className="fluxo">3. Confirmação</h4>
-
-                        <div className="col-sm-12 col-lg-12">
-                            <div className="single_special_cource no_shadow">
+                            <div className="col-sm-12 col-lg-12 single_special_cource">
                                 <div className="special_cource_text">
-                                    <a className="btn_4">Web</a>
-                                    <h4>R$130,00</h4>
-                                    <a href="course-details.html"><h3>ReactJS</h3></a>
-                                    <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
-                                    
-                                    <div className="box_checkout">
-                                        Quantidade: <span>4 X R$130,00</span>
-                                    </div>
-
-                                    <div className="box_checkout">
-                                        Forma de pagamento: <span>Boleto</span>
-                                    </div>
-
-                                    <div className="box_checkout">
-                                        Escola/Workshop selecionado:
-                                    </div>
-
-                                    <table className="table table_conf">
+                                    <table className="table">
                                         <thead>
                                             <tr>
                                                 <th>Escola</th>
                                                 <th>Workshop</th>
                                                 <th>Data</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -123,41 +74,110 @@ function OrderPage(props) {
                                                 <td>Escola municipal</td>
                                                 <td>Logica de prg</td>
                                                 <td>20/12/2019 20:30</td>
+                                                <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Escola municipal</td>
+                                                <td>Logica de prg</td>
+                                                <td>20/12/2019 20:30</td>
+                                                <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Escola municipal</td>
+                                                <td>Logica de prg</td>
+                                                <td>20/12/2019 20:30</td>
+                                                <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Escola municipal</td>
+                                                <td>Logica de prg</td>
+                                                <td>20/12/2019 20:30</td>
+                                                <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
-
-                                    <div className="box_checkout">
-                                        <a className="btn_1" href="#">FINALIZAR COMPRA</a>
-                                    </div>
-
                                 </div>
                             </div>
-                        </div>
+                        </>
+                        }
 
+                        {order.step === 3 &&
+                        <>
+                            <h4 className="fluxo">3. Confirmação</h4>
 
-                        <div className="col-sm-12 col-lg-12">
-                            <div className="single_special_cource no_shadow">
-                                <div className="special_cource_text no_shadow">
-                                    
-                                    <div className="confirmacao_check">
+                            <div className="col-sm-12 col-lg-12">
+                                <div className="single_special_cource no_shadow">
+                                    <div className="special_cource_text">
+                                        <a className="btn_4">Web</a>
+                                        <h4>R$130,00</h4>
+                                        <a href="course-details.html"><h3>ReactJS</h3></a>
+                                        <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
+                                        
+                                        <div className="box_checkout">
+                                            Quantidade: <span>4 X R$130,00</span>
+                                        </div>
 
-                                        <h1>
-                                            <span>#9887766</span>
-                                            Sua compra foi finalizada com sucesso!
-                                        </h1>
+                                        <div className="box_checkout">
+                                            Forma de pagamento: <span>Boleto</span>
+                                        </div>
 
-                                        <h2>
-                                            Muito obrigado por fazer parte dessa ação que todos ganham. <br />Você receberá todas informações por e-mail
-                                        </h2>
+                                        <div className="box_checkout">
+                                            Escola/Workshop selecionado:
+                                        </div>
 
-                                        <img src="img/checkout_confirm.png" alt="" />
+                                        <table className="table table_conf">
+                                            <thead>
+                                                <tr>
+                                                    <th>Escola</th>
+                                                    <th>Workshop</th>
+                                                    <th>Data</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Escola municipal</td>
+                                                    <td>Logica de prg</td>
+                                                    <td>20/12/2019 20:30</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div className="box_checkout">
+                                            <a className="btn_1" href="#">FINALIZAR COMPRA</a>
+                                        </div>
 
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
+                        </>
+                        }
+
+                        {order.step === 4 &&
+                        <>
+                            <div className="col-sm-12 col-lg-12">
+                                <div className="single_special_cource no_shadow">
+                                    <div className="special_cource_text no_shadow">
+                                        
+                                        <div className="confirmacao_check">
+
+                                            <h1>
+                                                <span>#9887766</span>
+                                                Sua compra foi finalizada com sucesso!
+                                            </h1>
+
+                                            <h2>
+                                                Muito obrigado por fazer parte dessa ação que todos ganham. <br />Você receberá todas informações por e-mail
+                                            </h2>
+
+                                            <img src="img/checkout_confirm.png" alt="" />
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                        }
 
                     </div>
                 </div>

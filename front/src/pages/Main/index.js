@@ -2,11 +2,15 @@ import React from 'react';
 
 import FeaturedCourses from '../../components/FeaturedCourses';
 import InfoData from '../../components/InfoData';
+import AboutUs from '../../components/AboutUs';
+import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 function MainPage() {
     return (
         <>
+            <Header />
+
             <section className="banner_part">
                 <div className="container">
                     <div className="row align-items-center">
@@ -23,6 +27,7 @@ function MainPage() {
                 </div>
             </section>
 
+            <AboutUs />
             <FeaturedCourses />
             <InfoData />
             <Footer />

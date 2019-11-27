@@ -7,8 +7,8 @@ import AboutUs from '../../components/AboutUs';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-function MainPage() {
-    
+function MainPage(props) {
+
     return (
         <>
             <Header />
@@ -30,7 +30,7 @@ function MainPage() {
             </section>
 
             <AboutUs />
-            <FeaturedCourses />
+            <FeaturedCourses history={props.history} />
             <InfoData />
             <Footer />
         </>

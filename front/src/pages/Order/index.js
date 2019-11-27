@@ -1,24 +1,35 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import api from '../../services/api';
 
 import InfoData from '../../components/InfoData';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 function OrderPage(props) {
-
-    console.log(props.location.state)
+    const [workshops, setWorshops] = useState([]);
     const [ order, setOrder ] = useState({
         ...props.location.state,
         quantidade: 1,
         step: 1
     })
 
+    useEffect(() => {
+        const loadWorkshops = async () => {
+          const response = await api.get('workshops');
+          setWorshops(response.data);
+        };
+    
+        loadWorkshops();
+    }, []);
+
+    console.log(workshops);
     return (
         <>
             <Header />
             
             <section className="special_cource course_padding_top">
                 <div className="container">
+                {order.step !== 4 &&
                     <div className="row justify-content-center">
                         <div className="col-xl-5">
                             <div className="section_tittle text-center">
@@ -27,6 +38,7 @@ function OrderPage(props) {
                             </div>
                         </div>
                     </div>
+}
                     <div className="row">
 
 
@@ -46,7 +58,7 @@ function OrderPage(props) {
                                             <div className="form-group">
                                                 <input value={order.quantidade} onChange={(e) => setOrder({...order, quantidade: e.target.value})} className="form-control" name="subject" type="number" placeholder="Quantidade" />
                                             </div>
-                                            <a className="btn_1" href="#">CONTINUAR</a>
+                                            <a className="btn_1" href="#" onClick={() => setOrder({...order, step: 2})}>CONTINUAR</a>
                                         </div>
                                     </div>
                                 </div>
@@ -70,30 +82,14 @@ function OrderPage(props) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Escola municipal</td>
-                                                <td>Logica de prg</td>
-                                                <td>20/12/2019 20:30</td>
-                                                <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Escola municipal</td>
-                                                <td>Logica de prg</td>
-                                                <td>20/12/2019 20:30</td>
-                                                <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Escola municipal</td>
-                                                <td>Logica de prg</td>
-                                                <td>20/12/2019 20:30</td>
-                                                <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Escola municipal</td>
-                                                <td>Logica de prg</td>
-                                                <td>20/12/2019 20:30</td>
-                                                <td width="150"><a className="btn_1" href="#">SELECIONAR</a></td>
-                                            </tr>
+                                        {workshops.map(workshop => (
+                                        <tr>
+                                            <td>{workshop.school.name}</td>
+                                            <td>{workshop.name}</td>
+                                            <td>{workshop.date}</td>
+                                            <td width="150"><a className="btn_1" href="#" onClick={() => setOrder({...order, workshop, step: 3})}>SELECIONAR</a></td>
+                                        </tr>
+                                        ))}
                                         </tbody>
                                     </table>
                                 </div>
@@ -108,13 +104,13 @@ function OrderPage(props) {
                             <div className="col-sm-12 col-lg-12">
                                 <div className="single_special_cource no_shadow">
                                     <div className="special_cource_text">
-                                        <a className="btn_4">Web</a>
-                                        <h4>R$130,00</h4>
-                                        <a href="course-details.html"><h3>ReactJS</h3></a>
-                                        <p>orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XV.</p>
+                                        <a className="btn_4">{order.type}</a>
+                                        <h4>R${order.price * order.quantidade}</h4>
+                                        <a href="course-details.html"><h3>{order.name}</h3></a>
+                                        <p>{order.description}</p>
                                         
                                         <div className="box_checkout">
-                                            Quantidade: <span>4 X R$130,00</span>
+                                            Quantidade: <span>{order.quantidade} X R${order.price}</span>
                                         </div>
 
                                         <div className="box_checkout">
@@ -134,16 +130,14 @@ function OrderPage(props) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Escola municipal</td>
-                                                    <td>Logica de prg</td>
-                                                    <td>20/12/2019 20:30</td>
-                                                </tr>
+                                                <td>{order.workshop.school.name}</td>
+                                                <td>{order.workshop.name}</td>
+                                                <td>{order.workshop.date}</td>
                                             </tbody>
                                         </table>
 
                                         <div className="box_checkout">
-                                            <a className="btn_1" href="#">FINALIZAR COMPRA</a>
+                                            <a className="btn_1"  href="#" onClick={() => setOrder({...order, step: 4})}>FINALIZAR COMPRA</a>
                                         </div>
 
                                     </div>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import api from '../../services/api';
 
-function FeaturedCourses() {
+function FeaturedCourses(props) {
+
     const [courses, setCourses] = useState([]);
     useEffect(() => {
         const loadCourses = async () => {
@@ -28,15 +29,16 @@ function FeaturedCourses() {
                 </div>
                 <div className="row">
                     {courses.map(course => (
-                        <div className="col-sm-6 col-lg-4">
+                        <div key={course._id} className="col-sm-6 col-lg-4">
                             <div className="single_special_cource">
                                 <div className="special_cource_text">
                                     <a className="btn_4">{course.type}</a>
                                         <h4>R$ {course.price}</h4>
                                     <a href="course-details.html"><h3>{course.name}</h3></a>
                                         <p>{course.description}</p>
+                                        <p><b>{course.company.name}</b></p>
                                     <div className="author_info">
-                                        <a className="btn_1" href="#">COMPRAR</a>
+                                    <a className="btn_1" href="" onClick={() => props.history.push('/order', {...course})}>COMPRAR</a>
                                     </div>
                                 </div>
                             </div>
